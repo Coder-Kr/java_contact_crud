@@ -2,13 +2,11 @@ package coderuz.controller;
 
 import coderuz.dto.Contact;
 import coderuz.service.ContactService;
-
-import java.util.Scanner;
+import coderuz.service.ScannerService;
 
 public class ContactController {
-    private ContactService contactService = new ContactService();
-    private Scanner strScanner = new Scanner(System.in);
-    private Scanner numScanner = new Scanner(System.in);
+    private ContactService contactService;
+    private ScannerService scannerService;
 
     public void start() {
         boolean b = true;
@@ -56,18 +54,18 @@ public class ContactController {
 
     public int getAction() {
         System.out.println("Enter action: ");
-        return numScanner.nextInt();
+        return scannerService.getNumScanner().nextInt();
     }
 
     public void addContact() {
         System.out.println("Enter name: ");
-        String name = strScanner.next();
+        String name = scannerService.getStrScanner().next();
 
         System.out.println("Enter surname: ");
-        String surname = strScanner.next();
+        String surname = scannerService.getStrScanner().next();
 
         System.out.println("Enter phone: ");
-        String phone = strScanner.next();
+        String phone = scannerService.getStrScanner().next();
 
         Contact contact = new Contact(); //IOC container
         contact.setName(name);
@@ -83,14 +81,25 @@ public class ContactController {
 
     public void deleteContact() {
         System.out.println("Enter Phone: ");
-        String phone = strScanner.next();
+        String phone = scannerService.getStrScanner().next();
         contactService.deleteContact(phone);
     }
 
     public void search() {
         System.out.println("Enter query: ");
-        String query = strScanner.next();
+        String query = scannerService.getStrScanner().next();
         contactService.search(query);
     }
 
+    public ContactService getContactService() {
+        return contactService;
+    }
+
+    public void setContactService(ContactService contactService) {
+        this.contactService = contactService;
+    }
+
+    public void setScannerService(ScannerService scannerService) {
+        this.scannerService = scannerService;
+    }
 }
