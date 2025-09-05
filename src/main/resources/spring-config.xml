@@ -8,7 +8,11 @@
             <property name="scannerService" ref="scannerService"/>
         </bean>
 
-        <bean id="contactService" class="coderuz.service.ContactService"/>
+        <bean id="contactService" class="coderuz.service.ContactService">
+            <property name="contactRepository" ref="contactRepository"/>
+        </bean>
 
         <bean id="scannerService" class="coderuz.service.ScannerService"/>
+
+        <bean id="contactRepository" class="coderuz.repository.ContactRepository"/>
 </beans>

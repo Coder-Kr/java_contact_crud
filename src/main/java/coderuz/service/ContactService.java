@@ -6,7 +6,7 @@ import coderuz.repository.ContactRepository;
 import java.util.List;
 
 public class ContactService {
-    private ContactRepository contactRepository = new ContactRepository(); //IoC container
+    private ContactRepository contactRepository; //IoC container
 
     public void addContact(Contact contact) {
         // check
@@ -47,4 +47,7 @@ public class ContactService {
         }
     }
 
+    public void setContactRepository(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
 }
